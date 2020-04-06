@@ -53,7 +53,7 @@ namespace RWI.WebApi.Controllers
                 response.Timestamp = DateTime.UtcNow;
 
                 stopwatch.Stop();
-                response.Elapsed = stopwatch.Elapsed;
+                response.ElapsedMilliseconds = stopwatch.ElapsedMilliseconds;
 
             }
             catch (Exception ex)
