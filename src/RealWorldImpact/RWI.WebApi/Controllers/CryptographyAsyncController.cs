@@ -10,15 +10,16 @@ using RWI.Common.Models.Web;
 using RWI.Common.Services.Cryptography;
 using RWI.WebApi.Models;
 
+
 namespace RWI.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CryptographyController : ControllerBase
+    public class CryptographyAsyncController : ControllerBase
     {
         private readonly IEncryptionService _encryptionService;
 
-        public CryptographyController(
+        public CryptographyAsyncController(
             IEncryptionService encryptionService
             )
         {
@@ -26,7 +27,7 @@ namespace RWI.WebApi.Controllers
         }
 
         [HttpGet]
-        public ApiResponse<CryptographyResponseModel> GetEncryptedValue()
+        public async Task<ApiResponse<CryptographyResponseModel>> GetEncryptedValueAsync()
         {
             Stopwatch stopwatch = null;
             ApiResponse<CryptographyResponseModel> response = new ApiResponse<CryptographyResponseModel>();
@@ -39,8 +40,8 @@ namespace RWI.WebApi.Controllers
 
 
                 var cryptoSet = _encryptionService.GenerateCryptoKeySet();
-                string encrypted = _encryptionService.Encrypt(cryptoSet, Guid.NewGuid().ToString());
-                string decrypted = _encryptionService.Decrypt(cryptoSet, encrypted);
+                string encrypted = await _encryptionService.EncryptAsync(cryptoSet, Guid.NewGuid().ToString());
+                string decrypted = await _encryptionService.DecryptAsync(cryptoSet, encrypted);
 
                 response.Result = new CryptographyResponseModel()
                 {
