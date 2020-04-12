@@ -1,6 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RWI.Common.Services.Caching;
 using RWI.Common.Services.Cryptography;
+using RWI.Common.Services.Location;
+using RWI.Common.Services.Parsing;
+using RWI.Common.Services.Storage;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,6 +31,11 @@ namespace RWI.Common.Extensions.Configuration
             // Transient
             //      Transient lifetime services are created each time they're requested. This lifetime works best for 
             //      lightweight, stateless services.
+            services.AddTransient<IAssetStorageService, AssetStorageService>();
+            services.AddTransient<ICachedLocationDataService, CachedLocationDataService>();
+            services.AddTransient<ICacheService, RedisCacheService>();
+            services.AddTransient<ICsvParsingService, CsvParsingService>();
+            services.AddTransient<ILocationDataService, LocationDataService>();
         }
     }
 }

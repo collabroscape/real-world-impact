@@ -27,7 +27,7 @@ namespace RWI.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ApiResponse<CryptographyResponseModel>> GetEncryptedValueAsync()
+        public async Task<ApiResponse<CryptographyResponseModel>> Get()
         {
             Stopwatch stopwatch = null;
             ApiResponse<CryptographyResponseModel> response = new ApiResponse<CryptographyResponseModel>();
@@ -37,7 +37,6 @@ namespace RWI.WebApi.Controllers
                 stopwatch = new Stopwatch();
                 stopwatch.Start();
                 response = new ApiResponse<CryptographyResponseModel>();
-
 
                 var cryptoSet = _encryptionService.GenerateCryptoKeySet();
                 string encrypted = await _encryptionService.EncryptAsync(cryptoSet, Guid.NewGuid().ToString());
