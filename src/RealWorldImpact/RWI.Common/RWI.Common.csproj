@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Mark Doyle</Authors>
+    <Company>Collabroscape LLC</Company>
+    <PackageProjectUrl>https://github.com/collabroscape/real-world-impact/</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
