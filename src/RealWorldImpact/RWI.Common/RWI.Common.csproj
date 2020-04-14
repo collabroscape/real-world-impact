@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Mark Doyle</Authors>
+    <Company>Collabroscape LLC</Company>
+    <PackageProjectUrl>https://github.com/collabroscape/real-world-impact/</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="15.0.4" />
+    <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="11.1.3" />
+    <PackageReference Include="Microsoft.Azure.Storage.Common" Version="11.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="StackExchange.Redis" Version="2.1.30" />
+  </ItemGroup>
+
+</Project>
