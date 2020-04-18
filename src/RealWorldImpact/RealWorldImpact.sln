@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RWI.Common", "RWI.Common\RWI.Common.csproj", "{E1709B81-0F16-403A-BECA-04F20CA8BC05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWI.WebApi", "RWI.WebApi\RWI.WebApi.csproj", "{E34620C7-5733-4B31-83E1-3F161A691F4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RWI.WebApi", "RWI.WebApi\RWI.WebApi.csproj", "{E34620C7-5733-4B31-83E1-3F161A691F4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RWI.Cnsl.ConversionComparison", "RWI.Cnsl.ConversionComparison\RWI.Cnsl.ConversionComparison.csproj", "{B0EB9A3A-A412-4049-8E74-EA2AECC10122}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E34620C7-5733-4B31-83E1-3F161A691F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34620C7-5733-4B31-83E1-3F161A691F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34620C7-5733-4B31-83E1-3F161A691F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EB9A3A-A412-4049-8E74-EA2AECC10122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EB9A3A-A412-4049-8E74-EA2AECC10122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EB9A3A-A412-4049-8E74-EA2AECC10122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EB9A3A-A412-4049-8E74-EA2AECC10122}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
