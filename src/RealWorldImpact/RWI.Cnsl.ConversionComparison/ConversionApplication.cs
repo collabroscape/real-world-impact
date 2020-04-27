@@ -116,23 +116,23 @@ namespace RWI.Cnsl.ConversionComparison
 
         private async Task ExecuteTestSequential()
         {
+            await ExecuteTestExtMethodForLoop();
+            await ExecuteTestExtMethodForEachLoop();
+            await ExecuteTestExtMethodLinq();
             await ExecuteTestAutomapperForLoop();
             await ExecuteTestAutomapperForEachLoop();
             await ExecuteTestAutomapperLinq();
-            await ExecuteTestExtMethodForLoop();
-            await ExecuteTestExtMethodForEachLoop();
-            await ExecuteTesExtMethodLinq();
         }
 
         private async Task ExecuteTestParallel()
         {
             await Task.WhenAll(
-                Task.Run(async () => await ExecuteTestAutomapperForLoop()),
-                Task.Run(async () => await ExecuteTestAutomapperForEachLoop()),
-                Task.Run(async () => await ExecuteTestAutomapperLinq()),
                 Task.Run(async () => await ExecuteTestExtMethodForLoop()),
                 Task.Run(async () => await ExecuteTestExtMethodForEachLoop()),
-                Task.Run(async () => await ExecuteTesExtMethodLinq())
+                Task.Run(async () => await ExecuteTestExtMethodLinq()),
+                Task.Run(async () => await ExecuteTestAutomapperForLoop()),
+                Task.Run(async () => await ExecuteTestAutomapperForEachLoop()),
+                Task.Run(async () => await ExecuteTestAutomapperLinq())
                 );
         }
 
@@ -141,14 +141,14 @@ namespace RWI.Cnsl.ConversionComparison
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-            List<Person> convertedViaAutomapperForLoop = new List<Person>();
+            List<Person> converted = new List<Person>();
             for (int i = 0; i < _personDtos.Count; i++)
             {
-                convertedViaAutomapperForLoop.Add(_mapper.Map<Person>(_personDtos[i]));
+                converted.Add(_mapper.Map<Person>(_personDtos[i]));
             }
             stopwatch.Stop();
             _totalElapsedAutomapperForLoop += stopwatch.ElapsedMilliseconds;
-            convertedViaAutomapperForLoop = null;
+            converted = null;
             await Task.FromResult(0);
         }
 
@@ -157,14 +157,14 @@ namespace RWI.Cnsl.ConversionComparison
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-            List<Person> convertedViaAutomapperForEachLoop = new List<Person>();
+            List<Person> converted = new List<Person>();
             foreach (var dto in _personDtos)
             {
-                convertedViaAutomapperForEachLoop.Add(_mapper.Map<Person>(dto));
+                converted.Add(_mapper.Map<Person>(dto));
             }
             stopwatch.Stop();
             _totalElapsedAutomapperForEachLoop += stopwatch.ElapsedMilliseconds;
-            convertedViaAutomapperForEachLoop = null;
+            converted = null;
             await Task.FromResult(0);
         }
 
@@ -173,10 +173,10 @@ namespace RWI.Cnsl.ConversionComparison
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-            List<Person> convertedViaAutomapperLinq = _personDtos.Select(dto => _mapper.Map<Person>(dto)).ToList();
+            List<Person> converted = _personDtos.Select(dto => _mapper.Map<Person>(dto)).ToList();
             stopwatch.Stop();
             _totalElapsedAutomapperLinq += stopwatch.ElapsedMilliseconds;
-            convertedViaAutomapperLinq = null;
+            converted = null;
             await Task.FromResult(0);
         }
 
@@ -185,14 +185,14 @@ namespace RWI.Cnsl.ConversionComparison
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-            List<Person> convertedViaExtensionForLoop = new List<Person>();
+            List<Person> converted = new List<Person>();
             for (int i = 0; i < _personDtos.Count; i++)
             {
-                convertedViaExtensionForLoop.Add(_personDtos[i].ConvertToPerson());
+                converted.Add(_personDtos[i].ConvertToPerson());
             }
             stopwatch.Stop();
             _totalElapsedExtMethodForLoop += stopwatch.ElapsedMilliseconds;
-            convertedViaExtensionForLoop = null;
+            converted = null;
             await Task.FromResult(0);
         }
 
@@ -201,26 +201,26 @@ namespace RWI.Cnsl.ConversionComparison
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-            List<Person> convertedViaExtensionForEachLoop = new List<Person>();
+            List<Person> converted = new List<Person>();
             foreach (var dto in _personDtos)
             {
-                convertedViaExtensionForEachLoop.Add(dto.ConvertToPerson());
+                converted.Add(dto.ConvertToPerson());
             }
             stopwatch.Stop();
             _totalElapsedExtMethodForEachLoop += stopwatch.ElapsedMilliseconds;
-            convertedViaExtensionForEachLoop = null;
+            converted = null;
             await Task.FromResult(0);
         }
 
-        private async Task ExecuteTesExtMethodLinq()
+        private async Task ExecuteTestExtMethodLinq()
         {
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-            List<Person> convertedViaExtensionLinq = _personDtos.Select(dto => dto.ConvertToPerson()).ToList();
+            List<Person> converted = _personDtos.Select(dto => dto.ConvertToPerson()).ToList();
             stopwatch.Stop();
             _totalElapsedExtMethodLinq += stopwatch.ElapsedMilliseconds;
-            convertedViaExtensionLinq = null;
+            converted = null;
             await Task.FromResult(0);
         }
 
